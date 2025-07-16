@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './App.css';
 import './styles/globals.css';
 
-// Cambiar las extensiones en los imports
 import Header from './components/common/Header.jsx';
 import Footer from './components/common/Footer.jsx';
 import HomePage from './pages/HomePage.jsx';
