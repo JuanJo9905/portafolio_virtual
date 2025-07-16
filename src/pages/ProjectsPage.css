@@ -1,0 +1,931 @@
+/* ============================================ */
+/* LOADING Y ERROR STATES */
+/* ============================================ */
+
+.projects__loading,
+.projects__error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  text-align: center;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 107, 53, 0.2);
+  border-left: 4px solid #ff6b35;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.projects__loading p,
+.projects__error p {
+  color: #b8c5d1;
+  font-size: 1.1rem;
+}
+
+.retry-btn {
+  margin-top: 1rem;
+  padding: 0.8rem 1.5rem;
+  background: linear-gradient(135deg, #ff6b35 0%, #f39c12 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.retry-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+}
+
+.projects__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  text-align: center;
+  color: #b8c5d1;
+}
+
+.tab__stars {
+  font-size: 0.75rem;
+  color: #f59e0b;
+  text-align: center;
+  margin-top: 0.25rem;
+}
+
+.github__info {
+  margin-top: 2rem;
+  text-align: center;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.github__info p {
+  color: #b8c5d1;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.refresh-btn {
+  background: rgba(255, 107, 53, 0.1);
+  color: #ff6b35;
+  border: 1px solid rgba(255, 107, 53, 0.3);
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+}
+
+.refresh-btn:hover {
+  background: rgba(255, 107, 53, 0.2);
+  transform: translateY(-1px);
+}
+
+/* ============================================ */
+/* ProjectsPage.css - Paleta oscura consistente */
+/* ============================================ */
+
+.projects-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0e1a 0%, #1a1f2e 50%, #2d1810 100%);
+  padding: 6rem 0 2rem 0;
+  width: 100vw;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.projects-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, #ff6b35, transparent),
+    radial-gradient(2px 2px at 40px 70px, #f39c12, transparent),
+    radial-gradient(1px 1px at 90px 40px, #e74c3c, transparent),
+    radial-gradient(1px 1px at 130px 80px, #ff6b35, transparent),
+    radial-gradient(2px 2px at 160px 30px, #f39c12, transparent);
+  background-repeat: repeat;
+  background-size: 200px 150px;
+  animation: particleFloat 20s linear infinite;
+  opacity: 0.6;
+  z-index: 1;
+}
+
+@keyframes particleFloat {
+  0% { transform: translateY(0px) translateX(0px); }
+  50% { transform: translateY(-100px) translateX(50px); }
+  100% { transform: translateY(-200px) translateX(100px); }
+}
+
+.projects__container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.projects__header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.projects__title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(135deg, #ffffff 0%, #ff6b35 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+}
+
+/* ============================================ */
+/* SEPARADORES DE AÑO */
+/* ============================================ */
+
+.year__separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 80px;
+  padding: 1rem 0.5rem;
+  background: rgba(255, 107, 53, 0.1);
+  border-right: 2px solid rgba(255, 107, 53, 0.3);
+  position: relative;
+}
+
+.year__separator::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(255, 107, 53, 0.3);
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.year__label {
+  background: linear-gradient(135deg, #ff6b35 0%, #f39c12 100%);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+  position: relative;
+  z-index: 2;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ============================================ */
+/* ESTADÍSTICAS DEL HEADER */
+/* ============================================ */
+
+.projects__stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.projects__count {
+  font-size: 1rem;
+  color: #b8c5d1;
+  margin-top: 0.5rem;
+  opacity: 0.8;
+}
+
+.projects__years {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.year__badge {
+  background: rgba(255, 107, 53, 0.1);
+  color: #ff6b35;
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid rgba(255, 107, 53, 0.3);
+}
+
+.projects__hint {
+  font-size: 0.85rem;
+  color: #b8c5d1;
+  opacity: 0.6;
+  font-style: italic;
+}
+
+.projects__count {
+  font-size: 1rem;
+  color: #b8c5d1;
+  margin-top: 0.5rem;
+  opacity: 0.8;
+}
+
+.projects__stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.projects__years {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.year__badge {
+  background: rgba(255, 107, 53, 0.1);
+  color: #ff6b35;
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid rgba(255, 107, 53, 0.3);
+}
+
+.projects__hint {
+  font-size: 0.85rem;
+  color: #b8c5d1;
+  opacity: 0.6;
+  font-style: italic;
+}
+
+/* ============================================ */
+/* ARCHIVADOR */
+/* ============================================ */
+
+.projects__archiver {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+/* ============================================ */
+/* PESTAÑAS */
+/* ============================================ */
+
+.archiver__tabs {
+  display: flex;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.archiver__tabs::-webkit-scrollbar {
+  display: none;
+}
+
+/* ============================================ */
+/* SEPARADORES DE AÑO */
+/* ============================================ */
+
+.year__separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 80px;
+  padding: 1rem 0.5rem;
+  background: rgba(255, 107, 53, 0.1);
+  border-right: 2px solid rgba(255, 107, 53, 0.3);
+  position: relative;
+}
+
+.year__separator::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(255, 107, 53, 0.3);
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.year__label {
+  background: linear-gradient(135deg, #ff6b35 0%, #f39c12 100%);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+  position: relative;
+  z-index: 2;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.archiver__tab {
+  min-width: 200px;
+  padding: 1.5rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.archiver__tab:last-child {
+  border-right: none;
+}
+
+.archiver__tab:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+.archiver__tab--active {
+  background: rgba(255, 107, 53, 0.15);
+  border-bottom: 3px solid #ff6b35;
+  transform: translateY(0);
+}
+
+.archiver__tab--active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(255, 107, 53, 0.15);
+}
+
+.tab__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.tab__number {
+  background: linear-gradient(135deg, #ff6b35 0%, #f39c12 100%);
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.tab__category {
+  background: rgba(255, 107, 53, 0.2);
+  color: #ff6b35;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.tab__title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.tab__year {
+  font-size: 0.8rem;
+  color: #b8c5d1;
+  text-align: right;
+}
+
+/* ============================================ */
+/* CONTENIDO DEL PROYECTO */
+/* ============================================ */
+
+.archiver__content {
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.02);
+  min-height: 600px;
+}
+
+.project__preview {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 2rem;
+  height: 100%;
+}
+
+.project__visual {
+  position: relative;
+}
+
+.project__image {
+  width: 100%;
+  height: 300px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* ✅ Nuevos estilos para imagen de GitHub */
+.project__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+.project__image:hover img {
+  transform: scale(1.05);
+}
+
+.project__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(1px);
+  border-radius: 12px;
+}
+
+.project__icon {
+  font-size: 3rem;
+  opacity: 0.9;
+}
+
+.project__status {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+}
+
+.status-badge {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.status-badge--completed {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+}
+
+.status-badge--progress {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: white;
+}
+
+/* ============================================ */
+/* DETALLES DEL PROYECTO */
+/* ============================================ */
+
+.project__details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.project__meta {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 1rem;
+}
+
+.project__title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #ffffff 0%, #ff6b35 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.project__info {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.project__category {
+  background: rgba(255, 107, 53, 0.2);
+  color: #ff6b35;
+  padding: 0.3rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border: 1px solid rgba(255, 107, 53, 0.3);
+}
+
+.project__year {
+  color: #b8c5d1;
+  font-weight: 500;
+}
+
+.project__description {
+  color: #b8c5d1;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.technologies__title,
+.features__title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.8rem;
+}
+
+.technologies__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.technology__tag {
+  background: rgba(255, 255, 255, 0.05);
+  color: #b8c5d1;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.technology__tag:hover {
+  background: rgba(255, 107, 53, 0.1);
+  border-color: rgba(255, 107, 53, 0.3);
+  color: #ff6b35;
+}
+
+.features__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.feature__item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #b8c5d1;
+}
+
+.feature__bullet {
+  color: #10b981;
+  font-weight: 600;
+}
+
+.project__actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: auto;
+}
+
+.project__btn {
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  text-decoration: none;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project__btn--primary {
+  background: linear-gradient(135deg, #ff6b35 0%, #f39c12 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+}
+
+.project__btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+}
+
+.project__btn--secondary {
+  background: rgba(255, 255, 255, 0.05);
+  color: #b8c5d1;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.project__btn--secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 107, 53, 0.3);
+  color: #ff6b35;
+}
+
+/* ============================================ */
+/* MEJORAS PARA IMAGEN DE GITHUB */
+/* ============================================ */
+
+.project__image--with-github-preview {
+  background: transparent;
+  padding: 0;
+}
+
+.project__image--with-github-preview img {
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+}
+
+.project__image--with-github-preview:hover img {
+  transform: scale(1.02);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Loading state para imagen */
+.project__image--loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, 
+    rgba(255, 255, 255, 0.05) 25%, 
+    transparent 25%, 
+    transparent 50%, 
+    rgba(255, 255, 255, 0.05) 50%, 
+    rgba(255, 255, 255, 0.05) 75%, 
+    transparent 75%);
+  background-size: 20px 20px;
+  animation: loading-shimmer 1.5s infinite linear;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.project__image--loading .loading-spinner {
+  width: 30px;
+  height: 30px;
+  border-width: 3px;
+}
+
+@keyframes loading-shimmer {
+  0% { background-position: 0 0; }
+  100% { background-position: 20px 20px; }
+}
+
+/* Fallback mejorado para cuando no hay imagen */
+.project__image--fallback {
+  background: linear-gradient(135deg, 
+    #0a0a0a 0%, 
+    #1a1a1a 50%, 
+    #0a0a0a 100%);
+  border: 2px solid rgba(46, 204, 113, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.project__image--fallback .project__overlay {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(2px);
+}
+
+.project__overlay--javascript {
+  background: linear-gradient(135deg, 
+    rgba(0, 0, 0, 0.9) 0%, 
+    rgba(20, 20, 20, 0.9) 50%, 
+    rgba(0, 0, 0, 0.9) 100%) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.fallback__particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.particle {
+  position: absolute;
+  background: #2ecc71;
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: particleFloat 4s infinite ease-in-out;
+  box-shadow: 0 0 6px #2ecc71;
+}
+
+@keyframes particleFloat {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.1);
+    opacity: 1;
+  }
+}
+
+.fallback__content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: white;
+}
+
+.js__logo {
+  font-size: 4rem;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #f39c12 0%, #2ecc71 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.js__text {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #2ecc71;
+  margin-bottom: 0.25rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.js__subtitle {
+  font-size: 0.9rem;
+  color: #b8c5d1;
+  opacity: 0.8;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================ */
+/* RESPONSIVE */
+/* ============================================ */
+
+@media (max-width: 1024px) {
+  .project__preview {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .project__image {
+    height: 250px;
+  }
+
+  .project__image img {
+    height: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-page {
+    padding: 5rem 0 1rem 0;
+  }
+  
+  .projects__container {
+    padding: 0 1rem;
+  }
+  
+  .projects__title {
+    font-size: 2rem;
+  }
+  
+  .archiver__content {
+    padding: 1.5rem;
+  }
+  
+  .archiver__tab {
+    min-width: 160px;
+    padding: 1rem 0.8rem;
+  }
+  
+  .tab__title {
+    font-size: 0.8rem;
+  }
+  
+  .project__actions {
+    flex-direction: column;
+  }
+
+  .project__image {
+    height: 200px;
+  }
+
+  .project__image img {
+    height: 200px;
+  }
+
+  /* ✅ Responsive para separadores de año */
+  .year__separator {
+    min-width: 60px;
+    padding: 0.8rem 0.3rem;
+  }
+
+  .year__label {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+  }
+
+  .projects__stats {
+    text-align: center;
+  }
+
+  .projects__years {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .archiver__tab {
+    min-width: 140px;
+    padding: 0.8rem 0.6rem;
+  }
+  
+  .project__title {
+    font-size: 1.5rem;
+  }
+  
+  .project__info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .project__image {
+    height: 180px;
+  }
+
+  .project__image img {
+    height: 180px;
+  }
+}
